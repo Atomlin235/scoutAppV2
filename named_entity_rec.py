@@ -7,6 +7,7 @@ from collections import Counter
 from bs4 import BeautifulSoup as bs
 import csv
 import spacy
+nlp = spacy.load('en_core_web_sm')
 
 #python -m spacy download en_core_web_sm
 
@@ -21,7 +22,7 @@ def retrieve_skill_list():
 def extract_tech_skills(dataframe):
     #Use Spacy load() to import a model
 
-    nlp = spacy.load('en_core_web_sm')
+    
 
 
     # Create EntityRuler pattern matching rules
