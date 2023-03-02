@@ -4,6 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import re
+from babel.numbers import parse_decimal
 import string 
 import locale
 locale.setlocale(locale.LC_ALL, 'C')
@@ -71,7 +72,7 @@ for index, row in initial_df.iterrows():
     range_list = []
 
     for salary in _range_list:
-        range_list.append(locale.atof(salary))
+        range_list.append(float(parse_decimal(salary, locale="en_US")))
 
     # assign
     initial_df.loc[index, "Id"] = id
