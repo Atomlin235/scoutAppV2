@@ -3,6 +3,7 @@ pre-commit
 requests
 beautifulsoup4
 lxml
+babel
 pandas
 nltk
 numpy
