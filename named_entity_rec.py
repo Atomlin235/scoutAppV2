@@ -1,8 +1,6 @@
 
 import pandas as pd
 import numpy as np
-import locale
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from collections import Counter
