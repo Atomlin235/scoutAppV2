@@ -137,8 +137,8 @@ def extract_tech_skills(dataframe):
         {'label': 'SKILL', 'pattern': [{"LOWER": "go"}], 'id': 'go'},
     ]
 
-    ruler = nlp.add_pipe('entity_ruler', before='ner')
-    ruler.add_patterns(tech_skills)
+    tech_ruler = nlp.add_pipe('entity_ruler', 'tech_ruler')
+    tech_ruler.add_patterns(tech_skills)
 
     #Clean incoming data 
 
@@ -206,8 +206,7 @@ def extract_soft_skills(dataframe):
     ]
 
 
-
-    soft_ruler = nlp.add_pipe('entity_ruler', before='ner')
+    soft_ruler = nlp.add_pipe('entity_ruler', 'soft_ruler')
     soft_ruler.add_patterns(soft_skills)
 
     #Clean incoming data 
@@ -261,7 +260,7 @@ def extract_user_skills(dataframe):
       user_skills.append({'label': 'SKILL', 'pattern': [{"LOWER": list_of_input_skills[count]}], 'id': list_of_input_skills[count]},)
       count = count +1 
 
-    user_ruler = nlp.add_pipe('entity_ruler', before='ner')
+    user_ruler = nlp.add_pipe('entity_ruler', 'user_ruler')
     user_ruler.add_patterns(user_skills)
 
     #Clean incoming data 
