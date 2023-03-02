@@ -207,8 +207,8 @@ def extract_soft_skills(dataframe):
 
 
 
-    ruler = nlp.add_pipe('entity_ruler', before='ner')
-    ruler.add_patterns(soft_skills)
+    soft_ruler = nlp.add_pipe('entity_ruler', before='ner')
+    soft_ruler.add_patterns(soft_skills)
 
     #Clean incoming data 
 
