@@ -1,0 +1,14 @@
+ipykernel
+pre-commit
+requests
+beautifulsoup4
+pandas
+nltk
+numpy
+matplotlib
+plotly
+streamlit
+textblob
+scikit-learn
+bertopic
+contractions
