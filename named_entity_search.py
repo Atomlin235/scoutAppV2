@@ -24,7 +24,7 @@ import named_entity_rec
 URL = "https://devitjobs.uk/job_feed.xml"
 page = requests.get(URL)
 
-soup = bs(page.text, "xml") 
+soup = bs(page.text, "lxml-xml") 
 
 # 2. Make a dataframe containing the relevant data (with `pandas`).
 

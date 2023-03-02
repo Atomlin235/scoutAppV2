@@ -2,6 +2,7 @@ ipykernel
 pre-commit
 requests
 beautifulsoup4
+lxml
 pandas
 nltk
 numpy
