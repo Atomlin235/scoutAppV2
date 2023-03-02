@@ -16,8 +16,6 @@ from csv import DictWriter
 
 #locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
-
-import skill_mod
 import named_entity_rec
 #python -m textblob.download_corpora If required
 
