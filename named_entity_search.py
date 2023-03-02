@@ -6,13 +6,16 @@ import numpy as np
 import re
 import string 
 import locale
-locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+locale.setlocale(locale.LC_ALL, 'C')
 import csv
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from collections import Counter
 from bs4 import BeautifulSoup as bs
 from csv import DictWriter
+
+#locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+
 
 import skill_mod
 import named_entity_rec
