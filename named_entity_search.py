@@ -259,8 +259,8 @@ def main():
             st.dataframe(simplified_desc_search)
             
             st.subheader("NER Skill Extraction Tool")
-            ner_title_df = named_entity_rec.extract_tech_skills(description_search_df)
-            ner_tech_skill_df = ner_title_df[['Title','Skills']].copy()
+            ner_desc_df = named_entity_rec.extract_tech_skills(description_search_df)
+            ner_tech_skill_df = ner_desc_df[['Title','Skills']].copy()
             ner_soft_skills_df = named_entity_rec.extract_soft_skills(description_search_df)
             ner_soft_skills_df.rename(columns={'Skills': 'SoftSkills'}, inplace=True)
             ner_skill_ex_df = ner_soft_skills_df[["SoftSkills","Salary"]].copy()
