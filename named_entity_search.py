@@ -159,6 +159,45 @@ tech_skills = [
 ruler = nlp.add_pipe('entity_ruler', before='ner')
 ruler.add_patterns(tech_skills)
 
+def extract_tech_skills(dataframe):
+
+    # Cleaning of data Convert all text to lower cases Delete all tabulation,spaces, and new lines, Delete all numericals Delete nltk's defined stop words,Lemmatize text   
+    dataframe ['Description'] = dataframe['Description'].apply(lambda x: " ".join(x.lower()for x in x.split()))
+## remove tabulation and punctuation
+    dataframe ['Description'] = dataframe ['Description'].str.replace('[^\w\s]',' ')
+
+    #Extract the skills to a new column
+    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'SKILL'])
+
+
+    # use another lambda function to use set() to de-duplicate the values and return only the unique matches in a Python list
+    dataframe['Skills'] = dataframe['Skills'].apply(lambda x: list(set(x)))
+
+    #Use the named entities to clean the dataset
+
+    dataframe[['Title', 'Skills']].sort_values('Skills', key=lambda x: x.str.len(), ascending=True).head(100)
+    
+    return dataframe
+
+def extract_soft_skills(dataframe):
+    # Cleaning of data Convert all text to lower cases Delete all tabulation,spaces, and new lines, Delete all numericals Delete nltk's defined stop words,Lemmatize text   
+    dataframe ['Description'] = dataframe['Description'].apply(lambda x: " ".join(x.lower()for x in x.split()))
+## remove tabulation and punctuation
+    dataframe ['Description'] = dataframe ['Description'].str.replace('[^\w\s]',' ')
+
+    #Extract the skills to a new column
+    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'SOFT_SKILL'])
+
+
+    # use another lambda function to use set() to de-duplicate the values and return only the unique matches in a Python list
+    dataframe['Skills'] = dataframe['Skills'].apply(lambda x: list(set(x)))
+
+    #Use the named entities to clean the dataset
+
+    dataframe[['Title', 'Skills']].sort_values('Skills', key=lambda x: x.str.len(), ascending=True).head(100)
+    
+    return dataframe
+
 # 1. Request data from the `devitjobs.uk` API and make queryable using `BeautifulSoup`.
 
 URL = "https://devitjobs.uk/job_feed.xml"
@@ -482,41 +521,3 @@ if __name__ == "__main__":
 
 
 
-def extract_tech_skills(dataframe):
-
-    # Cleaning of data Convert all text to lower cases Delete all tabulation,spaces, and new lines, Delete all numericals Delete nltk's defined stop words,Lemmatize text   
-    dataframe ['Description'] = dataframe['Description'].apply(lambda x: " ".join(x.lower()for x in x.split()))
-## remove tabulation and punctuation
-    dataframe ['Description'] = dataframe ['Description'].str.replace('[^\w\s]',' ')
-
-    #Extract the skills to a new column
-    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'SKILL'])
-
-
-    # use another lambda function to use set() to de-duplicate the values and return only the unique matches in a Python list
-    dataframe['Skills'] = dataframe['Skills'].apply(lambda x: list(set(x)))
-
-    #Use the named entities to clean the dataset
-
-    dataframe[['Title', 'Skills']].sort_values('Skills', key=lambda x: x.str.len(), ascending=True).head(100)
-    
-    return dataframe
-
-def extract_soft_skills(dataframe):
-    # Cleaning of data Convert all text to lower cases Delete all tabulation,spaces, and new lines, Delete all numericals Delete nltk's defined stop words,Lemmatize text   
-    dataframe ['Description'] = dataframe['Description'].apply(lambda x: " ".join(x.lower()for x in x.split()))
-## remove tabulation and punctuation
-    dataframe ['Description'] = dataframe ['Description'].str.replace('[^\w\s]',' ')
-
-    #Extract the skills to a new column
-    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'SOFT_SKILL'])
-
-
-    # use another lambda function to use set() to de-duplicate the values and return only the unique matches in a Python list
-    dataframe['Skills'] = dataframe['Skills'].apply(lambda x: list(set(x)))
-
-    #Use the named entities to clean the dataset
-
-    dataframe[['Title', 'Skills']].sort_values('Skills', key=lambda x: x.str.len(), ascending=True).head(100)
-    
-    return dataframe
