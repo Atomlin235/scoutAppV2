@@ -89,7 +89,7 @@ def extract_user_skills(dataframe):
     dataframe ['Description'] = dataframe ['Description'].str.replace('[^\w\s]',' ')
 
     #Extract the skills to a new column
-    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'SKILL'])
+    dataframe['Skills'] = dataframe['Description'].apply(lambda x: [ent.ent_id_ for ent in nlp(x).ents if ent.label_ == 'USER_SKILL'])
 
 
     # use another lambda function to use set() to de-duplicate the values and return only the unique matches in a Python list
